@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python joke.py)",
+      "Bash(echo \"exit=$?\")"
+    ]
+  }
+}
