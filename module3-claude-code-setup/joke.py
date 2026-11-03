@@ -19,12 +19,30 @@ def fetch_joke() -> str:
     return data["value"]
 
 
+def ask_for_another() -> bool:
+    """Ask until the user answers yes or no. EOF or Ctrl+C counts as no."""
+    while True:
+        try:
+            answer = input("Want another joke? (y/n): ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            print()
+            return False
+        if answer in ("y", "yes"):
+            return True
+        if answer in ("n", "no"):
+            return False
+        print("Please answer yes or no.")
+
+
 def main() -> int:
-    try:
-        print(fetch_joke())
-    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, KeyError) as exc:
-        print(f"Failed to fetch joke: {exc}", file=sys.stderr)
-        return 1
+    while True:
+        try:
+            print(fetch_joke())
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, KeyError) as exc:
+            print(f"Failed to fetch joke: {exc}", file=sys.stderr)
+            return 1
+        if not ask_for_another():
+            break
     return 0
 
 
