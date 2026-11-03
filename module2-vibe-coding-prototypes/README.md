@@ -1,8 +1,7 @@
 # AI-Powered Coding: From Prompts to Project Planning &lt;packt&gt;
 
-[https://www.coursera.org/learn/packt-ai-powered-coding-from-prompts-to-project-planning-8wtpj/lecture/yeIcn/prompt-assignment](https://www.coursera.org/learn/packt-ai-powered-coding-from-prompts-to-project-planning-8wtpj/lecture/yeIcn/prompt-assignment)
-
 ## Module 2: Vibe Coding for Prototyping
+[https://www.coursera.org/learn/packt-ai-powered-coding-from-prompts-to-project-planning-8wtpj/lecture/yeIcn/prompt-assignment](https://www.coursera.org/learn/packt-ai-powered-coding-from-prompts-to-project-planning-8wtpj/lecture/yeIcn/prompt-assignment)
 
 ### Exercise 1: Landing Page Prompt
 
@@ -57,4 +56,49 @@ DESIGN:
 Include sample content
 Make all buttons functional (scroll to sections)
 ```
+
+### Exercise 2: Prompt Assignment
+
+Using browser [v0.app](v0.app)
+
+Copy template from
+[https://github.com/kennethd/coding-with-ai-course-resources/blob/main/prompts/prototype-example-prompts.md#template](https://github.com/kennethd/coding-with-ai-course-resources/blob/main/prompts/prototype-example-prompts.md#template)
+
+Sample vibe coding prompt:
+```txt
+I want to prototype a markdown note-taking app in React.
+
+Here are the requirements:
+
+FEATURES:
+- Create, edit and delete notes
+- Live markdown preview (editor on left, preview on right)
+- Auto save to local storage with debouncing
+- Sidebar with all notes showing title and date
+- Search functionality to filter notes
+- Dark/light mode toggle
+
+
+TECHNICAL REQUIREMENTS:
+- Use react with functional components and hooks
+- Use react-markdown for preview rendering
+- Responsive design
+- Clean modern UI with Tailwind v4
+
+STRUCTURE:
+- Break UI into separate components where it makes sense
+```
+
+Review:
+
+  * Security Concerns
+  * File/component structure
+  * State mgmt
+  * Error handling
+  * Dead code, unused imports
+  * Dependencies
+  * What got right/wrong
+  * Overengineering
+
+
 
