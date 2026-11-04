@@ -182,4 +182,40 @@ DESIGN:
 Include sample content
 Make all buttons functional (scroll to sections)
 ```
+#### output
+```txt
+
+The Yotta Roots landing page is built and checked in light mode, dark mode, desktop, and mobile. Open index.html in a browser to view it. It's three files in the exercise folder, using plain HTML, CSS, and a small JavaScript file:
+
+- index.html: all the sections, with the mock screenshots and illustrations drawn in code, so there are no image files.
+- styles.css: earth-tone theme with a gradient hero, light and dark modes, and mobile layout.
+- script.js: the dark-mode toggle (it remembers your choice), the mobile menu, highlighting the menu item for the section you're viewing, and the signup form.
+
+What's in it
+- Hero: a mock family tree with an "Edit person" dialog open on top. The confidence slider in the dialog works.
+- Features: four cards, each linking to its detailed section further down.
+- Why section: titled "Built for research, not engagement".
+- Screenshots: a migration map from Cork to New York, New Haven, Cleveland and Chicago; a to-do list grouped by place, with the Grove Street Cemetery headstone task; and a November calendar with today marked as the great-great-great-grandmother's birthday.
+- Detail sections: one illustration each:
+  - a network of family servers linked to the Fediverse
+  - a branch-and-rollback diagram
+  - a shield blocking top-hatted data brokers
+  - a whale carrying containers
+- Pricing, Who We Are, and footer as you specified.
+- Signup section: I added a short "Plant your roots" section with a form, so the pricing and other call-to-action buttons have somewhere to go. Each pricing button pre-selects
+
+Every button and link scrolls smoothly to a sectio
+
+Placeholder content for you to replace
+- FadoDevStack: your brief cut off at "including", so I filled in "service orchestration, TLS, automated backups, and monitoring"
+  as a guess.
+- Prices: $7, $24 and Free are made up, and the page labels them as sample pricing.
+- Export formats: the GEDCOM and archival formats
+- Names: the founder isn't named, and the family and domain names (Weber, O'Connell, weber.family) are all sample content.
+- Signup form: it doesn't send anything. It just sng so.
+
+Nothing is committed yet.
+
+✻ Cogitated for 11m 31s · done 3:45 PM
+```
 
