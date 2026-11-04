@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yotta Roots — Genealogy for serious researchers</title>
+  <meta name="description" content="Yotta Roots is a self-hostable, federated, versioned genealogy platform for professional and serious amateur genealogists. Own your data. Skip the noise.">
+  <meta name="color-scheme" content="light dark">
+  <!-- Apply saved theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('yr-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='22' r='16' fill='%234f8a4a'/%3E%3Crect x='29' y='28' width='6' height='16' fill='%236b4a2b'/%3E%3Cpath d='M32 44 L18 58 M32 44 L32 60 M32 44 L46 58' stroke='%236b4a2b' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- Reusable logo mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo-mark" viewBox="0 0 64 64">
+    <circle cx="32" cy="20" r="15" class="logo-canopy"/>
+    <circle cx="21" cy="25" r="9" class="logo-canopy-2"/>
+    <circle cx="43" cy="25" r="9" class="logo-canopy-2"/>
+    <rect x="29" y="26" width="6" height="16" rx="1" class="logo-trunk"/>
+    <path d="M32 42 C28 48 22 50 15 58 M32 42 C32 50 31 54 32 61 M32 42 C36 48 42 50 49 58 M32 46 C27 52 24 53 22 54 M32 46 C37 52 40 53 42 54" class="logo-roots"/>
+  </symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand" aria-label="Yotta Roots — back to top">
+      <svg class="brand-mark" aria-hidden="true"><use href="#logo-mark"/></svg>
+      <span class="brand-name">Yotta<span>Roots</span></span>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#why">Why</a></li>
+        <li><a href="#tour">Tour</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        </button>
+        <a href="#join" class="btn btn-primary btn-sm">Get early access</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">929.1 · Genealogy, done properly</p>
+      <h1>Your family history.<br><em>Your</em> research. Without the noise.</h1>
+      <p class="lede">
+        Yotta Roots is a self-hostable, federated, version-controlled genealogy
+        platform for professional and serious amateur researchers. No hint
+        firehose. No data brokers. Just careful work on the families you
+        actually study, shared with the people you actually trust.
+      </p>
+      <div class="hero-ctas">
+        <a href="#join" class="btn btn-primary">Plant your tree</a>
+        <a href="#tour" class="btn btn-ghost">Take the tour ↓</a>
+      </div>
+      <ul class="hero-points">
+        <li>Exports to GEDCOM 7, GEDCOM-X &amp; archival bundles</li>
+        <li>Open source core</li>
+        <li>No ads, no hints, no trackers</li>
+      </ul>
+    </div>
+
+    <!-- Example screenshot: family tree with edit-person modal -->
+    <figure class="hero-shot" aria-label="Example screenshot: a family tree with the Edit Person dialog open">
+      <div class="app-window">
+        <div class="app-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="app-url">weber.family / trees / weber-oconnell</span>
+          <span class="app-branch">⑂ main</span>
+        </div>
+        <div class="app-body">
+          <svg class="tree-svg" viewBox="0 0 600 360" role="img" aria-label="Family tree, three generations of the Weber family">
+            <defs>
+              <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M20 0H0V20" class="grid-line"/>
+              </pattern>
+            </defs>
+            <rect width="600" height="360" fill="url(#grid)"/>
+            <!-- connectors -->
+            <g class="tree-links">
+              <path d="M165 63 H225"/>
+              <path d="M195 63 V115 H300 V140"/>
+              <path d="M375 63 H435"/>
+              <path d="M405 63 V115 H300"/>
+              <path d="M235 163 H365"/>
+              <path d="M300 163 V225"/>
+              <path d="M110 225 H490"/>
+              <path d="M110 225 V248 M300 225 V248 M490 225 V248"/>
+            </g>
+            <!-- gen 1 -->
+            <g class="node">
+              <rect x="35" y="40" width="130" height="46" rx="6"/>
+              <text x="47" y="60" class="n-name">Johann Weber</text>
+              <text x="47" y="76" class="n-date">1798 – 1861</text>
+              <rect x="135" y="72" width="22" height="5" rx="2" class="conf conf-mid"/>
+            </g>
+            <g class="node">
+              <rect x="225" y="40" width="150" height="46" rx="6"/>
+              <text x="237" y="60" class="n-name">Anna Maria Kessler</text>
+              <text x="237" y="76" class="n-date">1802 – 1870</text>
+              <rect x="345" y="72" width="22" height="5" rx="2" class="conf conf-hi"/>
+            </g>
+            <g class="node">
+              <rect x="435" y="40" width="130" height="46" rx="6"/>
+              <text x="447" y="60" class="n-name">Patrick O'Connell</text>
+              <text x="447" y="76" class="n-date">c.1795 – ?</text>
+              <rect x="535" y="72" width="22" height="5" rx="2" class="conf conf-lo"/>
+            </g>
+            <!-- gen 2 -->
+            <g class="node">
+              <rect x="105" y="140" width="130" height="46" rx="6"/>
+              <text x="117" y="160" class="n-name">Friedrich Weber</text>
+              <text x="117" y="176" class="n-date">1824 – 1889</text>
+              <rect x="205" y="172" width="22" height="5" rx="2" class="conf conf-hi"/>
+            </g>
+            <g class="node node-selected">
+              <rect x="365" y="140" width="150" height="46" rx="6"/>
+              <text x="377" y="160" class="n-name">Margaret O'Connell</text>
+              <text x="377" y="176" class="n-date">1829 – 1902</text>
+              <rect x="485" y="172" width="22" height="5" rx="2" class="conf conf-hi"/>
+            </g>
+            <!-- gen 3 -->
+            <g class="node">
+              <rect x="45" y="248" width="130" height="46" rx="6"/>
+              <text x="57" y="268" class="n-name">Thomas Weber</text>
+              <text x="57" y="284" class="n-date">1853 – 1920</text>
+              <rect x="145" y="280" width="22" height="5" rx="2" class="conf conf-hi"/>
+            </g>
+            <g class="node">
+              <rect x="235" y="248" width="130" height="46" rx="6"/>
+              <text x="247" y="268" class="n-name">Eliza Weber</text>
+              <text x="247" y="284" class="n-date">1856 – 1931</text>
+              <rect x="335" y="280" width="22" height="5" rx="2" class="conf conf-mid"/>
+            </g>
+            <g class="node">
+              <rect x="425" y="248" width="130" height="46" rx="6"/>
+              <text x="437" y="268" class="n-name">Henry J. Weber</text>
+              <text x="437" y="284" class="n-date">1860 – 1938</text>
+              <rect x="525" y="280" width="22" height="5" rx="2" class="conf conf-hi"/>
+            </g>
+          </svg>
+
+          <div class="modal" role="group" aria-label="Edit person dialog (example)">
+            <div class="modal-head">
+              <strong>Edit person</strong>
+              <span class="modal-id">I-0042</span>
+            </div>
+            <div class="modal-body">
+              <div class="field-row">
+                <label>Given names<input type="text" value="Margaret" readonly tabindex="-1"></label>
+                <label>Surname<input type="text" value="O'Connell" readonly tabindex="-1"></label>
+              </div>
+              <div class="fact">
+                <span class="fact-k">Born</span>
+                <span class="fact-v">14 Mar 1829 · Co. Cork, Ireland</span>
+                <span class="pill pill-mid">72%</span>
+              </div>
+              <div class="fact">
+                <span class="fact-k">Married</span>
+                <span class="fact-v">11 Nov 1851 · New Haven, CT</span>
+                <span class="pill pill-hi">94%</span>
+              </div>
+              <div class="fact">
+                <span class="fact-k">Died</span>
+                <span class="fact-v">3 Nov 1902 · New Haven, CT</span>
+                <span class="pill pill-hi">97%</span>
+              </div>
+              <label class="slider-label" for="hero-conf">
+                Confidence in birth record: <output id="hero-conf-out">72%</output>
+              </label>
+              <input type="range" id="hero-conf" min="0" max="100" value="72">
+              <p class="sources"><span>Sources:</span> 1880 U.S. Census ✓ · Parish baptism (transcr.) · Headstone <em>— photo pending</em></p>
+            </div>
+            <div class="modal-foot">
+              <span class="save-to">Save to <b>⑂ main</b></span>
+              <span class="mbtn">Cancel</span>
+              <span class="mbtn mbtn-primary">Save</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Example: editing a person, with a confidence score on every fact.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ FEATURES ============================ -->
+<section class="section" id="features">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">929.1 · 01 — Features</p>
+      <h2>Four commitments, built into the software</h2>
+      <p class="section-lede">Every part of Yotta Roots follows from four principles. They're how the software works, not settings you have to go looking for.</p>
+    </header>
+
+    <div class="feature-grid">
+      <a class="feature-card" href="#privacy">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4 L40 10 V22 C40 33 33 41 24 44 C15 41 8 33 8 22 V10 Z"/><path d="M17 24 l5 5 l9 -10" class="stroke-only"/></svg>
+        </div>
+        <h3>Own your own data</h3>
+        <p>Your tree lives on <em>your</em> instance. You choose exactly who sees it, export it any time, and nobody else gets a copy to monetize.</p>
+        <span class="card-link">Data ownership &amp; privacy →</span>
+      </a>
+      <a class="feature-card" href="#community">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="6"/><circle cx="9" cy="12" r="4"/><circle cx="39" cy="12" r="4"/><circle cx="9" cy="37" r="4"/><circle cx="39" cy="37" r="4"/><path d="M19 20 L12 14 M29 20 L36 14 M19 28 L12 35 M29 28 L36 35" class="stroke-only"/></svg>
+        </div>
+        <h3>Community</h3>
+        <p>Federated micro-social networking with other researchers working on the same families. It's a network of people, not one central database.</p>
+        <span class="card-link">How federation works →</span>
+      </a>
+      <a class="feature-card" href="#versioning">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="12" cy="10" r="4"/><circle cx="12" cy="38" r="4"/><circle cx="36" cy="18" r="4"/><path d="M12 14 V34 M36 22 C36 30 20 28 13 35" class="stroke-only"/></svg>
+        </div>
+        <h3>Versioned</h3>
+        <p>Branch your tree to test alternate histories. Every change is recorded, so a bad hypothesis never destroys good data.</p>
+        <span class="card-link">Branches &amp; rollback →</span>
+      </a>
+      <a class="feature-card" href="#extensible">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><rect x="6" y="22" width="10" height="10" rx="1"/><rect x="19" y="22" width="10" height="10" rx="1"/><rect x="32" y="22" width="10" height="10" rx="1"/><rect x="19" y="9" width="10" height="10" rx="1"/><path d="M4 37 C14 43 34 43 44 37" class="stroke-only"/></svg>
+        </div>
+        <h3>Empowering</h3>
+        <p>Fully extensible and built on free &amp; open source software. Write plugins, script imports, or host the whole thing yourself.</p>
+        <span class="card-link">Under the hood →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY ============================ -->
+<section class="section section-alt" id="why">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">929.1 · 02 — Our reasoning</p>
+      <h2>Built for research, not engagement</h2>
+      <p class="section-lede">The big platforms are built to keep you clicking and to grow their database. We built Yotta Roots for careful, sourced research.</p>
+    </header>
+
+    <div class="why-grid">
+      <article class="why-item">
+        <span class="why-num">i.</span>
+        <h3>Family trees, not a database of humanity</h3>
+        <p>The LDS project and major sites like Ancestry share a goal: one massive genealogical record of everyone who ever lived. We think that's the wrong goal. On Yotta Roots, data moves into and out of an instance <strong>only for the families represented in the trees hosted there</strong>. Your research stays tied to the people you're researching, not merged into someone else's dataset.</p>
+      </article>
+      <article class="why-item">
+        <span class="why-num">ii.</span>
+        <h3>Less noise. Much less.</h3>
+        <p>Tens of thousands of unreviewed "hints" based on vaguely similar names aren't help, they're homework. Yotta Roots only suggests connections from researchers you've chosen to follow, and every suggestion comes with its sources and a confidence score, so you can triage it in seconds.</p>
+        <div class="noise-compare" aria-hidden="true">
+          <div><span class="nc-label">Typical site</span><span class="nc-bar nc-bar-loud"></span><span class="nc-val">31,482 hints</span></div>
+          <div><span class="nc-label">Yotta Roots</span><span class="nc-bar nc-bar-quiet"></span><span class="nc-val">7 sourced leads</span></div>
+        </div>
+      </article>
+      <article class="why-item">
+        <span class="why-num">iii.</span>
+        <h3>You control your network</h3>
+        <p>Connect your instance only to researchers you trust: a cousin in Ohio, a professional colleague, a county historical society. Federation is opt-in for each connection, and you can revoke it any time.</p>
+      </article>
+      <article class="why-item">
+        <span class="why-num">iv.</span>
+        <h3>Confidence scores on everything</h3>
+        <p>Every fact, event, and relationship carries a weighted confidence score derived from its evidence. Weak links look weak in the tree. Strong ones earn their place. When you share, collaborators see your reasoning as well as your conclusions.</p>
+        <div class="conf-legend" aria-hidden="true">
+          <span class="pill pill-lo">≤ 40% speculative</span>
+          <span class="pill pill-mid">41–79% probable</span>
+          <span class="pill pill-hi">≥ 80% proven</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TOUR / SCREENSHOTS ============================ -->
+<section class="section" id="tour">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">929.1 · 03 — A look inside</p>
+      <h2>Tools for researchers who do fieldwork</h2>
+      <p class="section-lede">Maps, prioritized research lists, and a calendar of your ancestors' lives. These are working tools, not decoration.</p>
+    </header>
+
+    <!-- Map -->
+    <figure class="shot shot-wide">
+      <div class="shot-frame">
+        <div class="shot-bar"><span class="shot-title">Places · Weber–O'Connell branch</span><span class="shot-meta">5 places · 1829–1890</span></div>
+        <div class="map-wrap">
+          <svg class="map-svg" viewBox="0 0 640 320" role="img" aria-label="Map tracing the family from Cork, Ireland to New York, New Haven, Cleveland and Chicago">
+            <rect width="640" height="320" class="map-sea"/>
+            <g class="map-graticule">
+              <path d="M0 80H640M0 160H640M0 240H640M160 0V320M320 0V320M480 0V320"/>
+            </g>
+            <!-- North America (stylized) -->
+            <path class="map-land" d="M0 30 L120 22 L190 34 L232 52 L262 66 L270 84 L258 98 L246 104 L236 114 L222 122 L214 136 L208 156 L196 184 L186 214 L170 248 L150 286 L136 320 L0 320 Z"/>
+            <!-- Great Lakes -->
+            <path class="map-lake" d="M40 92 C52 84 70 86 74 98 C76 112 64 122 56 120 C50 130 42 126 44 114 Z"/>
+            <path class="map-lake" d="M84 108 C100 104 128 106 136 114 C128 122 100 124 86 118 Z"/>
+            <path class="map-lake" d="M140 96 C152 92 168 94 172 100 C164 106 150 106 140 102 Z"/>
+            <!-- Ireland & Britain -->
+            <path class="map-land" d="M466 96 C478 88 494 92 496 106 C498 120 488 134 474 136 C462 134 456 120 458 108 Z"/>
+            <path class="map-land" d="M508 60 C520 50 534 58 532 74 C540 90 546 110 548 128 C552 146 538 156 520 154 C508 152 512 138 516 126 C506 112 512 96 508 82 Z"/>
+            <!-- Continental Europe edge -->
+            <path class="map-land" d="M572 150 L640 136 L640 320 L560 320 L566 262 L552 226 L566 196 Z"/>
+
+            <!-- Route -->
+            <path class="map-route" d="M472 126 C400 150 300 170 218 128"/>
+            <path class="map-route" d="M218 128 L230 118"/>
+            <path class="map-route" d="M230 118 C190 108 150 112 118 126"/>
+            <path class="map-route" d="M118 126 C100 124 80 120 66 116"/>
+
+            <!-- Pins -->
+            <g class="pin"><circle cx="472" cy="126" r="6"/><text x="482" y="152">Co. Cork · 1829</text></g>
+            <g class="pin"><circle cx="218" cy="128" r="5"/><text x="226" y="150">New York · 1849</text></g>
+            <g class="pin pin-focus"><circle cx="230" cy="118" r="7"/><text x="238" y="102">New Haven · 1851</text></g>
+            <g class="pin"><circle cx="118" cy="126" r="5"/><text x="96" y="150">Cleveland · 1871</text></g>
+            <g class="pin"><circle cx="66" cy="116" r="5"/><text x="8" y="80">Chicago · 1890</text></g>
+
+            <text x="300" y="226" class="map-sea-label">North Atlantic</text>
+            <text x="270" y="244" class="map-sea-note">Margaret's crossing, 1849 · passenger list 68%</text>
+          </svg>
+          <ol class="map-legend">
+            <li><b>1829</b> Margaret O'Connell baptized, Co. Cork</li>
+            <li><b>1849</b> Arrives New York (passenger list, 68%)</li>
+            <li><b>1851</b> Marries Friedrich Weber, New Haven</li>
+            <li><b>1871</b> Thomas &amp; Eliza move to Cleveland</li>
+            <li><b>1890</b> Henry J. Weber settles in Chicago</li>
+          </ol>
+        </div>
+      </div>
+      <figcaption><strong>Migration maps.</strong> Trace a branch across towns, states, and oceans. Every pin links to its sources and confidence score.</figcaption>
+    </figure>
+
+    <div class="shot-pair">
+      <!-- TODO -->
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="shot-bar"><span class="shot-title">Research to-do</span><span class="shot-meta">sorted by priority · by place</span></div>
+          <div class="todo">
+            <h4>📍 Next time in New Haven, CT</h4>
+            <ul>
+              <li><label><input type="checkbox"> <span class="prio prio-high">High</span> Photograph Margaret's headstone at Grove Street Cemetery</label></li>
+              <li><label><input type="checkbox"> <span class="prio prio-high">High</span> Look up colonial-era land records at the public archives</label></li>
+              <li><label><input type="checkbox" checked> <span class="prio prio-med">Med</span> Request 1851 marriage register, St. Mary's parish</label></li>
+              <li><label><input type="checkbox"> <span class="prio prio-low">Low</span> City directories 1852–1870 for F. Weber, cooper</label></li>
+            </ul>
+            <h4>📍 Next time in Cork</h4>
+            <ul>
+              <li><label><input type="checkbox"> <span class="prio prio-med">Med</span> Verify baptism date in original parish register</label></li>
+            </ul>
+            <h4>🖥 From home</h4>
+            <ul>
+              <li><label><input type="checkbox"> <span class="prio prio-high">High</span> <span>Resolve "two Anna Marias" hypothesis on branch <code>⑂ kessler-alt</code></span></label></li>
+            </ul>
+          </div>
+        </div>
+        <figcaption><strong>Prioritized to-do lists.</strong> Grouped by place, so your next research trip is already planned.</figcaption>
+      </figure>
+
+      <!-- Calendar -->
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="shot-bar"><span class="shot-title">On this day · November</span><span class="shot-meta">Weber family</span></div>
+          <div class="calendar">
+            <div class="today-card">
+              <span class="today-label">Today</span>
+              <p>It's your <strong>great-great-great-grandmother</strong> Anna Maria Kessler Weber's birthday. She was born <b>4 Nov 1802</b>, 224 years ago.</p>
+            </div>
+            <div class="cal-grid" aria-label="November calendar">
+              <span class="dow">S</span><span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span>
+              <span>1</span><span>2</span><span class="ev">3</span><span class="ev today">4</span><span>5</span><span>6</span><span>7</span>
+              <span>8</span><span>9</span><span>10</span><span class="ev">11</span><span>12</span><span>13</span><span>14</span>
+              <span>15</span><span>16</span><span>17</span><span>18</span><span class="ev">19</span><span>20</span><span>21</span>
+              <span>22</span><span>23</span><span>24</span><span>25</span><span class="ev">26</span><span>27</span><span>28</span>
+              <span>29</span><span>30</span><span class="blank"></span><span class="blank"></span><span class="blank"></span><span class="blank"></span><span class="blank"></span>
+            </div>
+            <ul class="cal-events">
+              <li><b>Nov 3</b> Margaret O'Connell Weber died, 1902</li>
+              <li><b>Nov 11</b> Friedrich &amp; Margaret married, 1851</li>
+              <li><b>Nov 19</b> Henry J. Weber born, 1860</li>
+              <li><b>Nov 26</b> Thomas Weber naturalized, 1874</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption><strong>A calendar of past events.</strong> Birthdays, anniversaries, and milestones from the families you research.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FEATURE DETAILS ============================ -->
+<section class="section section-alt" id="details">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">929.1 · 04 — In detail</p>
+      <h2>How it works</h2>
+    </header>
+
+    <!-- Community -->
+    <article class="detail" id="community">
+      <div class="detail-art">
+        <svg viewBox="0 0 420 300" role="img" aria-label="Your instance as a hub connected to other researchers' instances and the wider Fediverse">
+          <g class="net-links">
+            <path d="M210 150 L80 70 M210 150 L345 70 M210 150 L80 225 M210 150 L345 225"/>
+            <path d="M80 70 L40 30 M80 70 L30 90 M345 70 L390 35 M345 70 L395 100 M80 225 L30 260 M80 225 L28 190 M345 225 L394 258 M345 225 L398 192 M345 96 L345 199" class="net-faint"/>
+          </g>
+          <circle cx="210" cy="150" r="48" class="hub hub-main"/>
+          <text x="210" y="145" class="hub-label">weber.family</text>
+          <text x="210" y="162" class="hub-sub">your instance</text>
+          <g class="hub-peer"><circle cx="80" cy="70" r="26"/><use href="#logo-mark" x="64" y="54" width="32" height="32"/><text x="80" y="114">oconnell-roots.net</text></g>
+          <g class="hub-peer"><circle cx="345" cy="70" r="26"/><use href="#logo-mark" x="329" y="54" width="32" height="32"/><text x="345" y="114">kessler.genealogy</text></g>
+          <g class="hub-peer"><circle cx="80" cy="225" r="26"/><use href="#logo-mark" x="64" y="209" width="32" height="32"/><text x="80" y="269">nh-history.org</text></g>
+          <g class="hub-peer hub-fedi"><circle cx="345" cy="225" r="26"/><text x="345" y="236" class="fedi-glyph">⁂</text><text x="345" y="269">the Fediverse</text></g>
+          <g class="sat"><circle cx="40" cy="30" r="7"/><circle cx="30" cy="90" r="7"/><circle cx="390" cy="35" r="7"/><circle cx="395" cy="100" r="7"/><circle cx="30" cy="260" r="7"/><circle cx="28" cy="190" r="7"/><circle cx="394" cy="258" r="7"/><circle cx="398" cy="192" r="7"/></g>
+        </svg>
+        <div class="toot" aria-hidden="true">
+          <div class="toot-head"><span class="avatar">MK</span><span><b>Mary Kessler</b><br><small>@mary@kessler.genealogy</small></span></div>
+          <p>Found Anna Maria in the 1832 Baden emigration list! Linked to I-0039 at 85%. Sources attached. 🌳</p>
+        </div>
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">Community</p>
+        <h3>A small social network for every family</h3>
+        <ul class="checklist">
+          <li><strong>Every instance is a micro-social network hub,</strong> connected to researchers with an interest in the same family: cousins, colleagues, and local societies.</li>
+          <li><strong>The built-in social platform doubles as a family Mastodon server,</strong> fully integrated with the Fediverse. Follow and be followed from any compatible account.</li>
+          <li>Share findings, ask for help with a brick wall, or announce a reunion, all next to the tree it's about.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Versioning -->
+    <article class="detail detail-flip" id="versioning">
+      <div class="detail-art">
+        <svg viewBox="0 0 420 285" role="img" aria-label="Branch diagram: an experimental branch splits from main, and a change is rolled back">
+          <path class="br-line br-main" d="M30 170 H400"/>
+          <path class="br-line br-exp" d="M120 170 C150 170 150 90 190 90 H330"/>
+          <path class="br-line br-dead" d="M240 170 C260 170 262 230 290 230 H320"/>
+          <!-- rollback arrow -->
+          <path class="br-revert" d="M306 244 C290 266 246 262 240 190"/>
+          <polygon class="br-revert-head" points="233,192 247,192 240,180"/>
+
+          <g class="commit"><circle cx="50" cy="170" r="9"/><circle cx="120" cy="170" r="9"/><circle cx="240" cy="170" r="9"/><circle cx="370" cy="170" r="9"/></g>
+          <g class="commit commit-exp"><circle cx="210" cy="90" r="9"/><circle cx="270" cy="90" r="9"/><circle cx="330" cy="90" r="9"/></g>
+          <g class="commit commit-dead"><circle cx="300" cy="230" r="9"/></g>
+
+          <text x="30" y="200" class="br-label">⑂ main</text>
+          <text x="190" y="66" class="br-label br-label-exp">⑂ kessler-alt · "two Anna Marias?"</text>
+          <text x="328" y="234" class="br-label br-label-dead">wrong Johann</text>
+          <text x="250" y="278" class="br-label br-revert-label">↺ rolled back</text>
+          <text x="352" y="200" class="br-label">HEAD</text>
+        </svg>
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">Versioned trees</p>
+        <h3>Branch the tree when the evidence is unclear</h3>
+        <ul class="checklist">
+          <li><strong>Create experimental branches when the data gets fuzzy.</strong> Two baptisms, one name? Model both, side by side, and let the evidence decide.</li>
+          <li><strong>Roll back changes when you realize you've strayed down the wrong path.</strong> Every edit is recorded with who made it, when, and why.</li>
+          <li>Merge a proven hypothesis into your main tree, or archive it with notes so nobody repeats the dead end.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Privacy -->
+    <article class="detail" id="privacy">
+      <div class="detail-art">
+        <svg viewBox="0 0 420 300" role="img" aria-label="A shield protecting your family tree from data brokers">
+          <!-- brokers -->
+          <g class="broker" transform="translate(40 60)">
+            <rect x="-14" y="-34" width="28" height="22" class="hat"/><rect x="-22" y="-14" width="44" height="5" class="hat"/>
+            <circle cx="0" cy="2" r="13" class="face"/><rect x="-10" y="-2" width="20" height="5" class="shades"/>
+            <path d="M-18 46 L-14 18 H14 L18 46 Z" class="suit"/>
+            <rect x="16" y="30" width="22" height="16" rx="2" class="case"/><text x="27" y="42" class="case-sign">$</text>
+          </g>
+          <g class="broker" transform="translate(48 210)">
+            <rect x="-14" y="-34" width="28" height="22" class="hat"/><rect x="-22" y="-14" width="44" height="5" class="hat"/>
+            <circle cx="0" cy="2" r="13" class="face"/><rect x="-10" y="-2" width="20" height="5" class="shades"/>
+            <path d="M-18 46 L-14 18 H14 L18 46 Z" class="suit"/>
+            <path d="M18 24 L52 4" class="net-pole"/><path d="M48 -6 C62 -6 66 10 56 16 C50 20 44 12 48 -6 Z" class="net-bag"/>
+          </g>
+          <g class="broker" transform="translate(380 140)">
+            <rect x="-14" y="-34" width="28" height="22" class="hat"/><rect x="-22" y="-14" width="44" height="5" class="hat"/>
+            <circle cx="0" cy="2" r="13" class="face"/><rect x="-10" y="-2" width="20" height="5" class="shades"/>
+            <path d="M-18 46 L-14 18 H14 L18 46 Z" class="suit"/>
+            <path d="M-20 26 L-44 14" class="net-pole"/><path d="M-44 4 L-58 14 L-44 24" class="magnet"/>
+          </g>
+          <!-- blocked attempts -->
+          <g class="blocked">
+            <path d="M80 92 L128 112 M90 196 L132 176 M332 150 L294 150"/>
+            <g class="x"><path d="M134 108 l12 12 M146 108 l-12 12"/><path d="M136 168 l12 12 M148 168 l-12 12"/><path d="M280 144 l12 12 M292 144 l-12 12"/></g>
+          </g>
+          <!-- shield -->
+          <path class="shield" d="M210 30 L282 58 V140 C282 196 252 238 210 262 C168 238 138 196 138 140 V58 Z"/>
+          <path class="shield-inner" d="M210 48 L266 70 V140 C266 186 242 220 210 240 C178 220 154 186 154 140 V70 Z"/>
+          <!-- mini tree inside -->
+          <g class="mini-tree">
+            <path d="M210 112 V128 M184 128 H236 M184 128 V146 M236 128 V146 M210 166 V182 M184 160 C184 172 236 172 236 160"/>
+            <rect x="196" y="94" width="28" height="18" rx="3"/><rect x="170" y="146" width="28" height="18" rx="3"/><rect x="222" y="146" width="28" height="18" rx="3"/><rect x="196" y="182" width="28" height="18" rx="3"/>
+          </g>
+          <text x="210" y="290" class="shield-caption">no brokers · no resale · no exceptions</text>
+        </svg>
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">Data ownership &amp; privacy</p>
+        <h3>Your family is not a product</h3>
+        <ul class="checklist">
+          <li><strong>All data is exportable in a variety of standard and archival formats:</strong> GEDCOM 5.5.1 &amp; 7, GEDCOM-X, CSV, and a self-describing archival bundle with sources, media, and full version history.</li>
+          <li><strong>Yotta Roots will never share data or do business with data brokers.</strong> Not for "research partnerships", not if we're acquired, not ever. It's in our terms, in plain English.</li>
+          <li>Living persons are private by default. Fine-grained sharing per tree, per branch, and per person.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Empowering -->
+    <article class="detail detail-flip" id="extensible">
+      <div class="detail-art">
+        <svg viewBox="0 0 420 280" role="img" aria-label="A whale carrying shipping containers labeled with the Yotta Roots services">
+          <!-- containers -->
+          <g class="containers">
+            <g><rect x="80" y="108" width="46" height="32" rx="2"/><text x="103" y="128">tree</text></g>
+            <g><rect x="130" y="108" width="46" height="32" rx="2"/><text x="153" y="128">fedi</text></g>
+            <g><rect x="180" y="108" width="46" height="32" rx="2"/><text x="203" y="128">db</text></g>
+            <g><rect x="230" y="108" width="46" height="32" rx="2"/><text x="253" y="128">media</text></g>
+            <g><rect x="280" y="108" width="46" height="32" rx="2"/><text x="303" y="128">search</text></g>
+            <g><rect x="130" y="72" width="46" height="32" rx="2"/><text x="153" y="92">auth</text></g>
+            <g><rect x="180" y="72" width="46" height="32" rx="2"/><text x="203" y="92">backup</text></g>
+            <g class="c-plugin"><rect x="230" y="72" width="46" height="32" rx="2"/><text x="253" y="92">plugin</text></g>
+            <g class="c-plugin"><rect x="180" y="36" width="46" height="32" rx="2"/><text x="203" y="56">yours?</text></g>
+          </g>
+          <!-- whale -->
+          <path class="whale" d="M60 144 H336 C352 144 358 132 364 118 C368 106 378 98 392 96 C384 108 384 118 394 126 C380 128 372 136 370 150 C362 200 300 222 220 222 C140 222 84 206 66 186 C54 172 52 156 60 144 Z"/>
+          <circle cx="98" cy="170" r="5" class="whale-eye"/>
+          <path class="whale-belly" d="M74 190 C120 210 200 214 260 206"/>
+          <!-- water -->
+          <path class="water" d="M0 236 C30 226 60 246 90 236 C120 226 150 246 180 236 C210 226 240 246 270 236 C300 226 330 246 360 236 C390 226 410 242 420 236 V280 H0 Z"/>
+          <text x="210" y="266" class="water-label">FadoDevStack · Docker Swarm</text>
+        </svg>
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">Empowering · free &amp; open source</p>
+        <h3>Infrastructure you can inspect, extend, and run yourself</h3>
+        <ul class="checklist">
+          <li><strong>Built on the FadoDevStack</strong>, a Docker Swarm-based open source self-hosting infrastructure platform. It includes service orchestration, TLS, automated backups, and monitoring.</li>
+          <li>Every service is a container: tree engine, Fediverse server, database, media store, and search. Swap, scale, or replace any of them.</li>
+          <li>A documented plugin API for custom record types, importers, reports, and visualizations. Your scripts, your rules.</li>
+        </ul>
+        <pre class="code-sample" aria-label="Example deployment command"><code><span class="c-prompt">$</span> fado stack deploy yotta-roots \
+    --domain weber.family</code></pre>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ PRICING ============================ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">929.1 · 05 — Pricing</p>
+      <h2>Pay for hosting, not for access to your own data</h2>
+      <p class="section-lede">Every plan includes full export at any time. If you leave, your data leaves with you, complete and in open formats.</p>
+    </header>
+
+    <div class="pricing-grid">
+      <article class="plan">
+        <h3>Shared Hosting</h3>
+        <p class="plan-price"><span class="amt">$7</span> / month</p>
+        <p class="plan-desc">Managed for you on shared infrastructure. Good for a single researcher or a small family project.</p>
+        <ul class="plan-list">
+          <li>Up to 25,000 people &amp; 20 GB media</li>
+          <li><code>yourfamily.yottaroots.net</code> address</li>
+          <li>Fediverse account on a shared family server</li>
+          <li>Unlimited branches &amp; full history</li>
+          <li>Nightly backups</li>
+        </ul>
+        <a href="#join" class="btn btn-ghost btn-block" data-plan="shared">Choose Shared</a>
+      </article>
+
+      <article class="plan plan-featured">
+        <span class="plan-badge">For serious research</span>
+        <h3>Fully Hosted</h3>
+        <p class="plan-price"><span class="amt">$24</span> / month</p>
+        <p class="plan-desc">Your own fully isolated stack, managed by us. No limits.</p>
+        <ul class="plan-list">
+          <li>Dedicated, isolated instance</li>
+          <li><strong>No limits</strong> on people, media, or branches</li>
+          <li>Your own domain &amp; your own Mastodon server</li>
+          <li>Private plugins &amp; custom integrations</li>
+          <li>Hourly encrypted backups · priority support</li>
+        </ul>
+        <a href="#join" class="btn btn-primary btn-block" data-plan="hosted">Choose Fully Hosted</a>
+      </article>
+
+      <article class="plan">
+        <h3>Community Edition</h3>
+        <p class="plan-price"><span class="amt">Free</span> forever</p>
+        <p class="plan-desc">Self-host the open source core on your own hardware or cloud.</p>
+        <ul class="plan-list">
+          <li>Open source core, yours to run &amp; modify</li>
+          <li>Deploys with FadoDevStack on Docker Swarm</li>
+          <li>Full federation &amp; export</li>
+          <li>Community forum &amp; Fediverse support</li>
+          <li class="caveat">May lag behind hosted plans in features</li>
+        </ul>
+        <a href="#extensible" class="btn btn-ghost btn-block" data-plan="community">Self-host it</a>
+      </article>
+    </div>
+    <p class="fine-print">Sample pricing for this preview. Final pricing will be announced at launch.</p>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">929.1 · 06 — Who we are</p>
+      <h2>Built by genealogists who are also engineers</h2>
+    </header>
+
+    <div class="about-grid">
+      <article class="about-card">
+        <div class="about-avatar" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><use href="#logo-mark"/></svg>
+        </div>
+        <h3>The founder</h3>
+        <p>Three decades of web and data engineering, from early web publishing systems to large-scale data pipelines. Twenty-five years of involvement with Free Software and data privacy groups. Yotta Roots started as one family research project, built after one too many "hint" notifications and one too many terms-of-service changes.</p>
+        <ul class="creds">
+          <li><b>30</b> years web &amp; data engineering</li>
+          <li><b>25</b> years free software &amp; privacy advocacy</li>
+        </ul>
+      </article>
+      <article class="about-card">
+        <div class="about-avatar about-avatar-group" aria-hidden="true">
+          <span>🌱</span><span>📜</span><span>🔧</span>
+        </div>
+        <h3>The community</h3>
+        <p>Tech-minded amateur genealogists who want to build tools that let people own their own data and services. Not another platform that holds your data hostage for a fee. We argue about citation formats and container orchestration with equal enthusiasm.</p>
+        <blockquote>"Research is a family's memory. It should belong to the family."</blockquote>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ JOIN ============================ -->
+<section class="section join" id="join">
+  <div class="container join-inner">
+    <div>
+      <p class="eyebrow">929.1 · 07 — Get started</p>
+      <h2>Plant your roots</h2>
+      <p>We're onboarding researchers in small groups. Tell us what you're working on and we'll be in touch, from our own mail server, with no tracking pixels.</p>
+    </div>
+    <form class="join-form" id="join-form" novalidate>
+      <label>Email
+        <input type="email" name="email" id="join-email" placeholder="you@example.org" required autocomplete="email">
+      </label>
+      <label>Plan
+        <select name="plan" id="join-plan">
+          <option value="hosted">Fully Hosted</option>
+          <option value="shared">Shared Hosting</option>
+          <option value="community">Community Edition</option>
+        </select>
+      </label>
+      <label>Surnames you research <span class="opt">(optional)</span>
+        <input type="text" name="surnames" placeholder="Weber, O'Connell, Kessler">
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">Request early access</button>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#top" class="brand">
+        <svg class="brand-mark" aria-hidden="true"><use href="#logo-mark"/></svg>
+        <span class="brand-name">Yotta<span>Roots</span></span>
+      </a>
+      <p>Serious genealogy. Your data, your network, your history.</p>
+    </div>
+    <nav aria-label="Product">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tour">Tour</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#join">Early access</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Platform">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#community">Community &amp; Fediverse</a></li>
+        <li><a href="#versioning">Versioned trees</a></li>
+        <li><a href="#privacy">Privacy pledge</a></li>
+        <li><a href="#extensible">Self-hosting</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Project">
+      <h4>Project</h4>
+      <ul>
+        <li><a href="#why">Why Yotta Roots</a></li>
+        <li><a href="#about">Who we are</a></li>
+        <li><a href="#pricing">Community Edition</a></li>
+        <li><a href="#top">Back to top ↑</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span id="year">2026</span> Yotta Roots. Built with free software.</p>
+    <p>This page uses no cookies, analytics, or trackers.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
